@@ -3,86 +3,82 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6b6255">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Kitaplığım">
+<meta name="theme-color" content="#183c2d">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Kitaplığım</title>
 <style>
-:root{--bg:#f7f5ef;--card:#fff;--text:#22211f;--muted:#77736b;--border:#e3dfd5;--accent:#6b6255;--soft:#eee9df}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-body.dark{--bg:#171715;--card:#24231f;--text:#f3f0e8;--muted:#aaa69d;--border:#3b3932;--accent:#c7bca9;--soft:#343129}
-main{max-width:760px;margin:auto;padding:24px 16px 40px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-h1{font-size:28px;margin:2px 0}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin:14px 0}
-button,input{font:inherit}button{min-height:44px;border:0;border-radius:13px;padding:0 15px;cursor:pointer;color:var(--text);background:var(--soft)}
-input{width:100%;padding:13px 15px;border:1px solid var(--border);border-radius:13px;background:var(--card);color:var(--text);font-size:16px}
-.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.muted{color:var(--muted);font-size:14px}
-.progress{height:7px;background:var(--border);border-radius:99px;overflow:hidden;margin:13px 0}.progress span{display:block;height:100%;background:var(--accent);width:0}
-.book{display:flex;gap:13px;align-items:center;background:var(--bg);padding:13px;border-radius:15px;margin:9px 0}.cover{width:52px;height:64px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:23px;flex:none}
-.book-info{min-width:0;flex:1}.book-title{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hidden{display:none!important}
-.reader-text{font-family:Georgia,serif;font-size:18px;line-height:1.9;white-space:pre-wrap}
-.badge{font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:5px 9px}
+:root{--bg:#f5f0e6;--card:#fffdf8;--ink:#183c2d;--muted:#718076;--line:#ded8ca;--accent:#b58b55}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+button,input{font:inherit}button{border:0;cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 18px 32px}
+header{padding:24px 2px 12px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:14px;background:#e9dfcc;display:grid;place-items:center;font-size:24px;box-shadow:0 5px 16px #183c2d14}.brand b{font-size:21px}.brand small{display:block;color:var(--muted);margin-top:2px}
+.icon{width:42px;height:42px;border-radius:13px;background:var(--card);color:var(--ink);font-size:19px;box-shadow:0 4px 15px #183c2d0c}
+.hero{background:var(--ink);color:#fffdf8;border-radius:26px;padding:24px;margin:10px 0 22px;box-shadow:0 12px 30px #183c2d25}.hero p{color:#d8e1db;margin:6px 0 18px}.continue{display:flex;gap:16px;align-items:center}.cover{width:72px;height:96px;border-radius:8px;background:linear-gradient(145deg,#d5bd91,#9a7749);display:grid;place-items:center;color:#fff;font-weight:700;text-align:center;padding:8px;flex:none}.progress{height:7px;background:#ffffff26;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:#d7b77c;border-radius:99px}.hero button{background:#f5e7ca;color:var(--ink);padding:11px 15px;border-radius:12px;font-weight:700}
+.search{display:flex;gap:10px;background:var(--card);border:1px solid var(--line);padding:11px 14px;border-radius:15px;margin-bottom:14px}.search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink)}
+.chips{display:flex;gap:8px;overflow:auto;padding-bottom:12px}.chip{white-space:nowrap;padding:9px 13px;border-radius:999px;background:#e9e4d9;color:var(--ink)}.chip.active{background:var(--ink);color:#fff}
+.section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px}.section h2{font-size:19px;margin:0}.section span{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:11px;box-shadow:0 5px 18px #183c2d08}.bookcover{height:170px;border-radius:12px;display:flex;align-items:flex-end;padding:13px;color:#fff;font-weight:700;line-height:1.15;background:linear-gradient(145deg,#315b47,#172f25)}.book:nth-child(3n) .bookcover{background:linear-gradient(145deg,#876c47,#443421)}.book:nth-child(4n) .bookcover{background:linear-gradient(145deg,#536b67,#263d39)}.book h3{font-size:15px;margin:10px 2px 3px}.book p{font-size:12px;color:var(--muted);margin:0 2px 9px}.book .read{width:100%;padding:9px;border-radius:11px;background:#edf0e8;color:var(--ink);font-weight:700}
+.empty{padding:35px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;z-index:5}.modal.open{display:flex}.reader{width:min(760px,100%);height:94vh;background:var(--card);border-radius:25px 25px 0 0;padding:16px 20px env(safe-area-inset-bottom);display:flex;flex-direction:column}.readerbar{display:flex;align-items:center;justify-content:space-between;gap:8px}.readerbar button{background:#eee9df;color:var(--ink);border-radius:11px;padding:9px 11px}.readerinfo{text-align:center;flex:1}.readerinfo b{font-size:14px}.readerinfo small{display:block;color:var(--muted);margin-top:2px}.tools{display:flex;gap:7px;overflow:auto;padding:12px 0}.tools button{background:#eee9df;border-radius:10px;padding:8px 11px;color:var(--ink)}.page{flex:1;overflow:auto;padding:12px 5px 40px;font-family:Georgia,serif;font-size:19px;line-height:1.75;color:#332f29}.page h1{font-family:inherit;line-height:1.2;color:var(--ink)}.page p{margin:0 0 1em}.readerfoot{border-top:1px solid var(--line);padding-top:10px}.bar{height:5px;background:#ddd7ca;border-radius:99px}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}.footline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:7px}
+body.dark{--bg:#101814;--card:#17221c;--ink:#e8efe9;--muted:#aab8ae;--line:#2d3a32}.dark .search,.dark .book{box-shadow:none}.dark .book .read,.dark .tools button,.dark .readerbar button,.dark .chip{background:#243128;color:var(--ink)}.dark .page{color:#ddd8cf}.dark .hero{background:#20382b}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<main>
-<header>
-<div><div class="eyebrow">AKŞAM OKUMA</div><h1>Kitaplığım 📚</h1></div>
-<button id="theme">🌙</button>
-</header>
-
-<section class="card">
-<div class="row between"><div><div class="muted">BUGÜNKÜ HEDEF</div><strong><span id="mins">0</span> / 30 dakika</strong></div><button id="add">+10 dk</button></div>
-<div class="progress"><span id="goalbar"></span></div><div id="goalmsg" class="muted">Bugün okumaya ne dersin? ❤️</div>
+<div class="app">
+<header><div class="brand"><div class="logo">📖</div><div><b>Kitaplığım</b><small>Kendi dijital kütüphanen</small></div></div><button class="icon" id="theme">☾</button></header>
+<section class="hero">
+<div><small>OKUMAYA DEVAM ET</small><h2 id="continueTitle" style="margin:5px 0">Henüz kitap yok</h2><p id="continueText">Bir kitap seçerek okumaya başla.</p></div>
+<div class="continue"><div class="cover" id="continueCover">📚</div><div style="flex:1"><div class="progress"><i id="heroProgress" style="width:0%"></i></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#d8e1db;margin:7px 0 10px"><span id="progressText">%0</span><span id="minutes">0 dk</span></div><button id="continueBtn" style="display:none">Kaldığın Yerden Oku</button></div></div>
 </section>
+<div class="search">🔎 <input id="search" placeholder="Kitap veya yazar ara..."></div>
+<div class="chips" id="chips"></div>
+<div class="section"><h2>Kitaplık</h2><span id="count"></span></div>
+<div class="grid" id="grid"></div>
+</div>
 
-<section id="library" class="card">
-<div class="row between"><h2 style="margin:0;font-size:19px">Ücretsiz Kütüphane</h2><span id="count" class="badge"></span></div>
-<div style="margin:13px 0"><input id="search" placeholder="Kitap veya yazar ara..."></div>
-<div id="books"></div>
-<p class="muted">Başlangıç kataloğundaki metinler örnek okuma içerikleridir. Tam kitapları telif durumu uygun yasal kaynaklardan ekleyebilirsin.</p>
-</section>
+<div class="modal" id="modal">
+<div class="reader">
+<div class="readerbar"><button id="close">✕</button><div class="readerinfo"><b id="readerTitle"></b><small id="readerAuthor"></small></div><button id="fav">♡</button></div>
+<div class="tools"><button id="minus">A−</button><button id="plus">A+</button><button id="sepia">Sepya</button><button id="darkreader">Gece</button><button id="bookmark">🔖 Yer imi</button></div>
+<article class="page" id="page"></article>
+<div class="readerfoot"><div class="bar"><i id="readerProgress"></i></div><div class="footline"><span id="pageLabel">Bölüm 1</span><span id="readerPercent">%0</span></div></div>
+</div></div>
 
-<section id="reader" class="card hidden">
-<div class="row between"><button id="back">← Kütüphane</button><span id="meta" class="muted"></span></div>
-<h2 id="rtitle"></h2><div id="rtext" class="reader-text"></div>
-<div class="row" style="margin-top:18px"><button id="smaller">A−</button><button id="larger">A+</button></div>
-</section>
-
-<section class="card">
-<h2 style="margin:0 0 12px;font-size:19px">Kendi kitabını ekle</h2>
-<input id="title" placeholder="Kitap adı">
-<div style="height:9px"></div><input id="author" placeholder="Yazar">
-<div style="height:9px"></div><button id="save" style="width:100%">Kitaplığıma ekle</button>
-</section>
-</main>
 <script>
-const catalog=[
-["Alice Harikalar Diyarında","Lewis Carroll","Alice, ne yapacağını düşünerek nehrin kıyısında otururken pembe gözlü beyaz bir tavşanın yanından hızla geçtiğini gördü."],
-["Sherlock Holmes — Kızıl Dosya","Arthur Conan Doyle","Dr. Watson, Baker Street'teki yeni hayatının Sherlock Holmes ile tanışmasıyla bambaşka bir yön alacağını henüz bilmiyordu."],
-["Gulliver'in Gezileri","Jonathan Swift","Lemuel Gulliver denizlere açılmayı ve uzak ülkeleri görmeyi seven bir gezgindi. Bir yolculuğunda kendisini tuhaf bir ülkede buldu."],
-["Dorian Gray'in Portresi","Oscar Wilde","Büyük bir odada, açık pencereden gelen yaz kokuları arasında üç adam sanat, güzellik ve gençlik üzerine konuşuyordu."]
+const books=[
+["Kürk Mantolu Madonna","Sabahattin Ali","Türk Edebiyatı"],["Eylül","Mehmet Rauf","Türk Edebiyatı"],["Araba Sevdası","Recaizade Mahmut Ekrem","Türk Edebiyatı"],["Kaşağı","Ömer Seyfettin","Öykü"],["Suç ve Ceza","Fyodor Dostoyevski","Klasik"],["Yeraltından Notlar","Fyodor Dostoyevski","Klasik"],["Anna Karenina","Lev Tolstoy","Klasik"],["İvan İlyiç'in Ölümü","Lev Tolstoy","Klasik"],["Gurur ve Önyargı","Jane Austen","Klasik"],["Jane Eyre","Charlotte Brontë","Klasik"],["Dracula","Bram Stoker","Korku"],["Frankenstein","Mary Shelley","Korku"],["Dorian Gray'in Portresi","Oscar Wilde","Klasik"],["1984","George Orwell","Bilim Kurgu"],["Hayvan Çiftliği","George Orwell","Klasik"],["Zaman Makinesi","H. G. Wells","Bilim Kurgu"],["Dünyalar Savaşı","H. G. Wells","Bilim Kurgu"],["Sherlock Holmes: Kızıl Dosya","Arthur Conan Doyle","Polisiye"],["Define Adası","R. L. Stevenson","Macera"],["Robinson Crusoe","Daniel Defoe","Macera"],["Monte Cristo Kontu","Alexandre Dumas","Macera"],["Üç Silahşörler","Alexandre Dumas","Macera"],["Sefiller","Victor Hugo","Klasik"],["Notre Dame'ın Kamburu","Victor Hugo","Klasik"],["Oliver Twist","Charles Dickens","Klasik"],["İki Şehrin Hikâyesi","Charles Dickens","Klasik"],["Beyaz Diş","Jack London","Macera"],["Vahşetin Çağrısı","Jack London","Macera"],["Martin Eden","Jack London","Klasik"],["Fareler ve İnsanlar","John Steinbeck","Klasik"],["Moby Dick","Herman Melville","Macera"],["Alice Harikalar Diyarında","Lewis Carroll","Çocuk"],["Gulliver'in Gezileri","Jonathan Swift","Macera"],["Don Kişot","Miguel de Cervantes","Klasik"],["Muhteşem Gatsby","F. Scott Fitzgerald","Klasik"],["Bilinmeyen Bir Kadının Mektubu","Stefan Zweig","Öykü"],["Satranç","Stefan Zweig","Öykü"],["Karamazov Kardeşler","Fyodor Dostoyevski","Klasik"]
 ];
-let books=[...catalog],minutes=0,dark=false,font=18;
+const cats=["Tümü",...new Set(books.map(x=>x[2]))];
+let state=JSON.parse(localStorage.getItem("kitapligim_v6")||"{}"), selected=null, font=Number(localStorage.getItem("readerFont")||19);
 const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("kitapligim_v6",JSON.stringify(state))}
 function render(){
- document.body.classList.toggle("dark",dark); $("mins").textContent=minutes;
- $("goalbar").style.width=Math.min(100,minutes/30*100)+"%";
- $("goalmsg").textContent=minutes>=30?"Bugünkü hedef tamamlandı! 🎉":"Bugün "+Math.max(0,30-minutes)+" dakika daha okuyabilirsin. ❤️";
- const q=$("search").value.toLowerCase().trim(), list=books.filter(b=>(b[0]+" "+b[1]).toLowerCase().includes(q));
- $("count").textContent=list.length+" kitap"; $("books").innerHTML="";
- list.forEach((b,i)=>{const d=document.createElement("div");d.className="book";d.innerHTML='<div class="cover">📖</div><div class="book-info"><div class="book-title"></div><div class="muted"></div></div><button>Oku</button>';d.querySelector(".book-title").textContent=b[0];d.querySelector(".muted").textContent=b[1];d.querySelector("button").onclick=()=>read(books.indexOf(b));$("books").appendChild(d)});
+ let q=$("search").value.toLocaleLowerCase("tr-TR"), cat=state.cat||"Tümü";
+ let list=books.filter(b=>(cat==="Tümü"||b[2]===cat)&&(!q||b[0].toLocaleLowerCase("tr-TR").includes(q)||b[1].toLocaleLowerCase("tr-TR").includes(q)));
+ $("count").textContent=list.length+" kitap";
+ $("grid").innerHTML=list.map((b,i)=>`<div class="book"><div class="bookcover">${b[0]}</div><h3>${b[0]}</h3><p>${b[1]}</p><button class="read" onclick="openBook(${books.indexOf(b)})">Oku</button></div>`).join("")||'<div class="empty">Aradığın kitap bulunamadı.</div>';
+ $("chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"active":""}" onclick="state.cat='${c}';save();render()">${c}</button>`).join("");
+ let cont=state.last;if(cont!=null){let b=books[cont],p=state.progress?.[cont]||0;$("continueTitle").textContent=b[0];$("continueText").textContent=b[1];$("continueCover").textContent=b[0];$("heroProgress").style.width=p+"%";$("progressText").textContent="%"+p;$("minutes").textContent=(state.minutes?.[cont]||0)+" dk";$("continueBtn").style.display="inline-block";$("continueBtn").onclick=()=>openBook(cont)}else{$("continueBtn").style.display="none"}
 }
-function read(i){const b=books[i];$("library").classList.add("hidden");$("reader").classList.remove("hidden");$("rtitle").textContent=b[0];$("meta").textContent=b[1];$("rtext").textContent=b[2];$("rtext").style.fontSize=font+"px"}
-$("back").onclick=()=>{$("reader").classList.add("hidden");$("library").classList.remove("hidden")};
-$("search").oninput=render;$("theme").onclick=()=>{dark=!dark;render()};$("add").onclick=()=>{minutes=Math.min(999,minutes+10);render()};
-$("smaller").onclick=()=>{font=Math.max(13,font-1);$("rtext").style.fontSize=font+"px"};$("larger").onclick=()=>{font=Math.min(30,font+1);$("rtext").style.fontSize=font+"px"};
-$("save").onclick=()=>{const t=$("title").value.trim();if(!t){$("title").focus();return}books.push([t,$("author").value.trim()||"Yazar belirtilmedi","Bu kitap kişisel kitaplığına eklendi. Tam metni yasal bir EPUB/PDF kaynağından ekleyebilirsin."]);$("title").value="";$("author").value="";render()};
-if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+function openBook(i){selected=i;state.last=i;state.progress??={};state.progress[i]??=0;state.minutes??={};state.minutes[i]??=0;save();let b=books[i];$("readerTitle").textContent=b[0];$("readerAuthor").textContent=b[1];$("fav").textContent=(state.fav?.includes(i)?"♥":"♡");$("modal").classList.add("open");renderReader();render()}
+function renderReader(){
+ let b=books[selected], p=state.progress[selected]||0;
+ $("page").style.fontSize=font+"px";
+ $("page").innerHTML=`<h1>${b[0]}</h1><p><em>${b[1]}</em></p><p>Bu sürümde okuma motorunun temeli hazır. Kitap metinleri, yalnızca yasal olarak ücretsiz erişilebilen veya uygun lisansa sahip kaynaklardan bağlanacak.</p><p>Okuma konumun bu cihazda otomatik olarak saklanır. Yazı boyutunu değiştirebilir, gece veya sepya görünümüne geçebilir ve yer imi bırakabilirsin.</p><p>V6 geliştikçe bu alana gerçek bölüm metinleri gelecek; amaç, kitabı uygulamadan çıkmadan rahatça okuyabilmek.</p>`;
+ $("readerProgress").style.width=p+"%";$("readerPercent").textContent="%"+p;$("pageLabel").textContent="İlerleme";
+}
+$("close").onclick=()=>$("modal").classList.remove("open");
+$("plus").onclick=()=>{font=Math.min(30,font+2);localStorage.setItem("readerFont",font);renderReader()};
+$("minus").onclick=()=>{font=Math.max(14,font-2);localStorage.setItem("readerFont",font);renderReader()};
+$("theme").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("dark",document.body.classList.contains("dark"))};
+$("darkreader").onclick=()=>{$("page").style.background=document.body.classList.contains("dark")?"#17221c":"#fffdf8";$("page").style.color=document.body.classList.contains("dark")?"#ddd8cf":"#332f29"};
+$("sepia").onclick=()=>{$("page").style.background="#f1e4c9";$("page").style.color="#403529"};
+$("fav").onclick=()=>{state.fav??=[];if(state.fav.includes(selected))state.fav=state.fav.filter(x=>x!==selected);else state.fav.push(selected);save();$("fav").textContent=state.fav.includes(selected)?"♥":"♡"};
+$("bookmark").onclick=()=>{state.bookmark=selected;save();alert("Yer imi kaydedildi ❤️")};
+$("page").onscroll=()=>{let el=$("page"),p=Math.round(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)||0;state.progress[selected]=Math.max(state.progress[selected]||0,p);state.minutes[selected]=(state.minutes[selected]||0)+0.01;save();$("readerProgress").style.width=p+"%";$("readerPercent").textContent="%"+p;render()};
+$("search").oninput=render;
+if(localStorage.getItem("dark")==="true")document.body.classList.add("dark");
 render();
 </script>
 </body></html>
