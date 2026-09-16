@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6b6255">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kitaplığım">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Kitaplığım</title>
+<style>
+:root{--bg:#f7f5ef;--card:#fff;--text:#22211f;--muted:#77736b;--border:#e3dfd5;--accent:#6b6255;--soft:#eee9df}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body.dark{--bg:#171715;--card:#24231f;--text:#f3f0e8;--muted:#aaa69d;--border:#3b3932;--accent:#c7bca9;--soft:#343129}
+main{max-width:760px;margin:auto;padding:24px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+h1{font-size:28px;margin:2px 0}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin:14px 0}
+button,input{font:inherit}button{min-height:44px;border:0;border-radius:13px;padding:0 15px;cursor:pointer;color:var(--text);background:var(--soft)}
+input{width:100%;padding:13px 15px;border:1px solid var(--border);border-radius:13px;background:var(--card);color:var(--text);font-size:16px}
+.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.muted{color:var(--muted);font-size:14px}
+.progress{height:7px;background:var(--border);border-radius:99px;overflow:hidden;margin:13px 0}.progress span{display:block;height:100%;background:var(--accent);width:0}
+.book{display:flex;gap:13px;align-items:center;background:var(--bg);padding:13px;border-radius:15px;margin:9px 0}.cover{width:52px;height:64px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:23px;flex:none}
+.book-info{min-width:0;flex:1}.book-title{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hidden{display:none!important}
+.reader-text{font-family:Georgia,serif;font-size:18px;line-height:1.9;white-space:pre-wrap}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:5px 9px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div><div class="eyebrow">AKŞAM OKUMA</div><h1>Kitaplığım 📚</h1></div>
+<button id="theme">🌙</button>
+</header>
+
+<section class="card">
+<div class="row between"><div><div class="muted">BUGÜNKÜ HEDEF</div><strong><span id="mins">0</span> / 30 dakika</strong></div><button id="add">+10 dk</button></div>
+<div class="progress"><span id="goalbar"></span></div><div id="goalmsg" class="muted">Bugün okumaya ne dersin? ❤️</div>
+</section>
+
+<section id="library" class="card">
+<div class="row between"><h2 style="margin:0;font-size:19px">Ücretsiz Kütüphane</h2><span id="count" class="badge"></span></div>
+<div style="margin:13px 0"><input id="search" placeholder="Kitap veya yazar ara..."></div>
+<div id="books"></div>
+<p class="muted">Başlangıç kataloğundaki metinler örnek okuma içerikleridir. Tam kitapları telif durumu uygun yasal kaynaklardan ekleyebilirsin.</p>
+</section>
+
+<section id="reader" class="card hidden">
+<div class="row between"><button id="back">← Kütüphane</button><span id="meta" class="muted"></span></div>
+<h2 id="rtitle"></h2><div id="rtext" class="reader-text"></div>
+<div class="row" style="margin-top:18px"><button id="smaller">A−</button><button id="larger">A+</button></div>
+</section>
+
+<section class="card">
+<h2 style="margin:0 0 12px;font-size:19px">Kendi kitabını ekle</h2>
+<input id="title" placeholder="Kitap adı">
+<div style="height:9px"></div><input id="author" placeholder="Yazar">
+<div style="height:9px"></div><button id="save" style="width:100%">Kitaplığıma ekle</button>
+</section>
+</main>
+<script>
+const catalog=[
+["Alice Harikalar Diyarında","Lewis Carroll","Alice, ne yapacağını düşünerek nehrin kıyısında otururken pembe gözlü beyaz bir tavşanın yanından hızla geçtiğini gördü."],
+["Sherlock Holmes — Kızıl Dosya","Arthur Conan Doyle","Dr. Watson, Baker Street'teki yeni hayatının Sherlock Holmes ile tanışmasıyla bambaşka bir yön alacağını henüz bilmiyordu."],
+["Gulliver'in Gezileri","Jonathan Swift","Lemuel Gulliver denizlere açılmayı ve uzak ülkeleri görmeyi seven bir gezgindi. Bir yolculuğunda kendisini tuhaf bir ülkede buldu."],
+["Dorian Gray'in Portresi","Oscar Wilde","Büyük bir odada, açık pencereden gelen yaz kokuları arasında üç adam sanat, güzellik ve gençlik üzerine konuşuyordu."]
+];
+let books=[...catalog],minutes=0,dark=false,font=18;
+const $=id=>document.getElementById(id);
+function render(){
+ document.body.classList.toggle("dark",dark); $("mins").textContent=minutes;
+ $("goalbar").style.width=Math.min(100,minutes/30*100)+"%";
+ $("goalmsg").textContent=minutes>=30?"Bugünkü hedef tamamlandı! 🎉":"Bugün "+Math.max(0,30-minutes)+" dakika daha okuyabilirsin. ❤️";
+ const q=$("search").value.toLowerCase().trim(), list=books.filter(b=>(b[0]+" "+b[1]).toLowerCase().includes(q));
+ $("count").textContent=list.length+" kitap"; $("books").innerHTML="";
+ list.forEach((b,i)=>{const d=document.createElement("div");d.className="book";d.innerHTML='<div class="cover">📖</div><div class="book-info"><div class="book-title"></div><div class="muted"></div></div><button>Oku</button>';d.querySelector(".book-title").textContent=b[0];d.querySelector(".muted").textContent=b[1];d.querySelector("button").onclick=()=>read(books.indexOf(b));$("books").appendChild(d)});
+}
+function read(i){const b=books[i];$("library").classList.add("hidden");$("reader").classList.remove("hidden");$("rtitle").textContent=b[0];$("meta").textContent=b[1];$("rtext").textContent=b[2];$("rtext").style.fontSize=font+"px"}
+$("back").onclick=()=>{$("reader").classList.add("hidden");$("library").classList.remove("hidden")};
+$("search").oninput=render;$("theme").onclick=()=>{dark=!dark;render()};$("add").onclick=()=>{minutes=Math.min(999,minutes+10);render()};
+$("smaller").onclick=()=>{font=Math.max(13,font-1);$("rtext").style.fontSize=font+"px"};$("larger").onclick=()=>{font=Math.min(30,font+1);$("rtext").style.fontSize=font+"px"};
+$("save").onclick=()=>{const t=$("title").value.trim();if(!t){$("title").focus();return}books.push([t,$("author").value.trim()||"Yazar belirtilmedi","Bu kitap kişisel kitaplığına eklendi. Tam metni yasal bir EPUB/PDF kaynağından ekleyebilirsin."]);$("title").value="";$("author").value="";render()};
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+render();
+</script>
+</body></html>
