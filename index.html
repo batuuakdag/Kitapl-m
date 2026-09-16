@@ -19,7 +19,7 @@ header{padding:24px 2px 12px;display:flex;align-items:center;justify-content:spa
 .section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px}.section h2{font-size:19px;margin:0}.section span{font-size:13px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:11px;box-shadow:0 5px 18px #183c2d08}.bookcover{height:170px;border-radius:12px;display:flex;align-items:flex-end;padding:13px;color:#fff;font-weight:700;line-height:1.15;background:linear-gradient(145deg,#315b47,#172f25)}.book:nth-child(3n) .bookcover{background:linear-gradient(145deg,#876c47,#443421)}.book:nth-child(4n) .bookcover{background:linear-gradient(145deg,#536b67,#263d39)}.book h3{font-size:15px;margin:10px 2px 3px}.book p{font-size:12px;color:var(--muted);margin:0 2px 9px}.book .read{width:100%;padding:9px;border-radius:11px;background:#edf0e8;color:var(--ink);font-weight:700}
 .empty{padding:35px;text-align:center;color:var(--muted)}
-.modal{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;z-index:5}.modal.open{display:flex}.reader{width:min(760px,100%);height:94vh;background:var(--card);border-radius:25px 25px 0 0;padding:16px 20px env(safe-area-inset-bottom);display:flex;flex-direction:column}.readerbar{display:flex;align-items:center;justify-content:space-between;gap:8px}.readerbar button{background:#eee9df;color:var(--ink);border-radius:11px;padding:9px 11px}.readerinfo{text-align:center;flex:1}.readerinfo b{font-size:14px}.readerinfo small{display:block;color:var(--muted);margin-top:2px}.tools{display:flex;gap:7px;overflow:auto;padding:12px 0}.tools button{background:#eee9df;border-radius:10px;padding:8px 11px;color:var(--ink)}.page{flex:1;overflow:auto;padding:12px 5px 40px;font-family:Georgia,serif;font-size:19px;line-height:1.75;color:#332f29}.page h1{font-family:inherit;line-height:1.2;color:var(--ink)}.page p{margin:0 0 1em}.readerfoot{border-top:1px solid var(--line);padding-top:10px}.bar{height:5px;background:#ddd7ca;border-radius:99px}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}.footline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:7px}
+.modal{position:fixed;inset:0;background:#10251dcc;display:none;align-items:flex-end;justify-content:center;z-index:5}.modal.open{display:flex}.reader{width:min(760px,100%);height:94vh;background:var(--card);border-radius:25px 25px 0 0;padding:16px 20px env(safe-area-inset-bottom);display:flex;flex-direction:column}.reader{position:relative}.readerbar{display:flex;align-items:center;justify-content:space-between;gap:8px}.readerbar button{background:#eee9df;color:var(--ink);border-radius:11px;padding:9px 11px}.readerinfo{text-align:center;flex:1}.readerinfo b{font-size:14px}.readerinfo small{display:block;color:var(--muted);margin-top:2px}.tools{display:flex;gap:7px;overflow:auto;padding:12px 0}.tools button{background:#eee9df;border-radius:10px;padding:8px 11px;color:var(--ink)}.page{flex:1;overflow:auto;padding:12px 5px 40px;font-family:Georgia,serif;font-size:19px;line-height:1.75;color:#332f29}.page h1{font-family:inherit;line-height:1.2;color:var(--ink)}.page p{margin:0 0 1em}.lightpanel{display:none;position:absolute;left:16px;right:16px;top:72px;z-index:4;background:rgba(255,253,248,.98);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 30px #183c2d25}.lightpanel.open{display:block}.lightrow{display:flex;align-items:center;gap:10px}.lightrow input{width:100%}.dark .lightpanel{background:#1b2720}.screenShade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:4}.readerfoot{border-top:1px solid var(--line);padding-top:10px}.bar{height:5px;background:#ddd7ca;border-radius:99px}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}.footline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:7px}
 body.dark{--bg:#101814;--card:#17221c;--ink:#e8efe9;--muted:#aab8ae;--line:#2d3a32}.dark .search,.dark .book{box-shadow:none}.dark .book .read,.dark .tools button,.dark .readerbar button,.dark .chip{background:#243128;color:var(--ink)}.dark .page{color:#ddd8cf}.dark .hero{background:#20382b}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
@@ -28,7 +28,7 @@ body.dark{--bg:#101814;--card:#17221c;--ink:#e8efe9;--muted:#aab8ae;--line:#2d3a
 <div class="app">
 <header><div class="brand"><div class="logo">📖</div><div><b>Kitaplığım</b><small>Kendi dijital kütüphanen</small></div></div><button class="icon" id="theme">☾</button></header>
 <section class="hero">
-<div><small>OKUMAYA DEVAM ET</small><h2 id="continueTitle" style="margin:5px 0">Henüz kitap yok</h2><p id="continueText">Bir kitap seçerek okumaya başla.</p></div>
+<div><small>OKUMAYA DEVAM ET</small><h2 id="continueTitle" style="margin:5px 0">Henüz kitap yok</h2><p id="continueText">Bir kitap seçerek okumaya başla.</p><small id="offlineStatus" style="color:#d8e1db">● Çevrimdışı okuma hazır</small></div>
 <div class="continue"><div class="cover" id="continueCover">📚</div><div style="flex:1"><div class="progress"><i id="heroProgress" style="width:0%"></i></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#d8e1db;margin:7px 0 10px"><span id="progressText">%0</span><span id="minutes">0 dk</span></div><button id="continueBtn" style="display:none">Kaldığın Yerden Oku</button></div></div>
 </section>
 <div class="search">🔎 <input id="search" placeholder="Kitap veya yazar ara..."></div>
@@ -40,13 +40,13 @@ body.dark{--bg:#101814;--card:#17221c;--ink:#e8efe9;--muted:#aab8ae;--line:#2d3a
 <div class="modal" id="modal">
 <div class="reader">
 <div class="readerbar"><button id="close">✕</button><div class="readerinfo"><b id="readerTitle"></b><small id="readerAuthor"></small></div><button id="fav">♡</button></div>
-<div class="tools"><button id="minus">A−</button><button id="plus">A+</button><button id="sepia">Sepya</button><button id="darkreader">Gece</button><button id="bookmark">🔖 Yer imi</button></div>
+<div class="tools"><button id="downloadBook">⬇️ Çevrimdışı Kaydet</button><button id="minus">A−</button><button id="plus">A+</button><button id="sepia">Sepya</button><button id="darkreader">Gece</button><button id="lightBtn">☀️ Işık</button><button id="bookmark">🔖 Yer imi</button></div><div class="lightpanel" id="lightPanel"><div style="font-weight:700;margin-bottom:8px">Okuma ışığı</div><div class="lightrow"><span>🌙</span><input id="lightRange" type="range" min="0" max="70" value="0"><span>☀️</span></div><small style="display:block;color:var(--muted);margin-top:7px">Bu ayar uygulamanın okuma ekranını karartır. iPhone’un gerçek sistem parlaklığı tarayıcıdan değiştirilemez.</small></div>
 <article class="page" id="page"></article>
 <div class="readerfoot"><div class="bar"><i id="readerProgress"></i></div><div class="footline"><span id="pageLabel">Bölüm 1</span><span id="readerPercent">%0</span></div></div>
-</div></div>
+</div></div><div class="screenShade" id="screenShade"></div>
 
 <script>
-const books=[
+const books=[["Aşk-ı Memnu","Halid Ziya Uşaklıgil","Türk Edebiyatı","https://tr.wikisource.org/wiki/A%C5%9Fk-%C4%B1_Memnu/B%C3%B6l%C3%BCm_1"],
 ["Kürk Mantolu Madonna","Sabahattin Ali","Türk Edebiyatı"],["Eylül","Mehmet Rauf","Türk Edebiyatı"],["Araba Sevdası","Recaizade Mahmut Ekrem","Türk Edebiyatı"],["Kaşağı","Ömer Seyfettin","Öykü"],["Suç ve Ceza","Fyodor Dostoyevski","Klasik"],["Yeraltından Notlar","Fyodor Dostoyevski","Klasik"],["Anna Karenina","Lev Tolstoy","Klasik"],["İvan İlyiç'in Ölümü","Lev Tolstoy","Klasik"],["Gurur ve Önyargı","Jane Austen","Klasik"],["Jane Eyre","Charlotte Brontë","Klasik"],["Dracula","Bram Stoker","Korku"],["Frankenstein","Mary Shelley","Korku"],["Dorian Gray'in Portresi","Oscar Wilde","Klasik"],["1984","George Orwell","Bilim Kurgu"],["Hayvan Çiftliği","George Orwell","Klasik"],["Zaman Makinesi","H. G. Wells","Bilim Kurgu"],["Dünyalar Savaşı","H. G. Wells","Bilim Kurgu"],["Sherlock Holmes: Kızıl Dosya","Arthur Conan Doyle","Polisiye"],["Define Adası","R. L. Stevenson","Macera"],["Robinson Crusoe","Daniel Defoe","Macera"],["Monte Cristo Kontu","Alexandre Dumas","Macera"],["Üç Silahşörler","Alexandre Dumas","Macera"],["Sefiller","Victor Hugo","Klasik"],["Notre Dame'ın Kamburu","Victor Hugo","Klasik"],["Oliver Twist","Charles Dickens","Klasik"],["İki Şehrin Hikâyesi","Charles Dickens","Klasik"],["Beyaz Diş","Jack London","Macera"],["Vahşetin Çağrısı","Jack London","Macera"],["Martin Eden","Jack London","Klasik"],["Fareler ve İnsanlar","John Steinbeck","Klasik"],["Moby Dick","Herman Melville","Macera"],["Alice Harikalar Diyarında","Lewis Carroll","Çocuk"],["Gulliver'in Gezileri","Jonathan Swift","Macera"],["Don Kişot","Miguel de Cervantes","Klasik"],["Muhteşem Gatsby","F. Scott Fitzgerald","Klasik"],["Bilinmeyen Bir Kadının Mektubu","Stefan Zweig","Öykü"],["Satranç","Stefan Zweig","Öykü"],["Karamazov Kardeşler","Fyodor Dostoyevski","Klasik"]
 ];
 const cats=["Tümü",...new Set(books.map(x=>x[2]))];
@@ -61,16 +61,68 @@ function render(){
  $("chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"active":""}" onclick="state.cat='${c}';save();render()">${c}</button>`).join("");
  let cont=state.last;if(cont!=null){let b=books[cont],p=state.progress?.[cont]||0;$("continueTitle").textContent=b[0];$("continueText").textContent=b[1];$("continueCover").textContent=b[0];$("heroProgress").style.width=p+"%";$("progressText").textContent="%"+p;$("minutes").textContent=(state.minutes?.[cont]||0)+" dk";$("continueBtn").style.display="inline-block";$("continueBtn").onclick=()=>openBook(cont)}else{$("continueBtn").style.display="none"}
 }
+
+const DB_NAME="KitapligimOfflineDB",DB_VERSION=1;
+function openDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME,DB_VERSION);r.onupgradeneeded=()=>r.result.createObjectStore("books",{keyPath:"id"});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+async function saveOfflineBook(id,html){const db=await openDB();return new Promise((resolve,reject)=>{const t=db.transaction("books","readwrite");t.objectStore("books").put({id,html,savedAt:Date.now()});t.oncomplete=resolve;t.onerror=()=>reject(t.error)})}
+async function getOfflineBook(id){try{const db=await openDB();return await new Promise((resolve,reject)=>{const t=db.transaction("books","readonly");const r=t.objectStore("books").get(id);r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error)})}catch(e){return null}}
+
 function openBook(i){selected=i;state.last=i;state.progress??={};state.progress[i]??=0;state.minutes??={};state.minutes[i]??=0;save();let b=books[i];$("readerTitle").textContent=b[0];$("readerAuthor").textContent=b[1];$("fav").textContent=(state.fav?.includes(i)?"♥":"♡");$("modal").classList.add("open");renderReader();render()}
-function renderReader(){
- let b=books[selected], p=state.progress[selected]||0;
+async function renderReader(){
+ let b=books[selected],p=state.progress[selected]||0;
  $("page").style.fontSize=font+"px";
- $("page").innerHTML=`<h1>${b[0]}</h1><p><em>${b[1]}</em></p><p>Bu sürümde okuma motorunun temeli hazır. Kitap metinleri, yalnızca yasal olarak ücretsiz erişilebilen veya uygun lisansa sahip kaynaklardan bağlanacak.</p><p>Okuma konumun bu cihazda otomatik olarak saklanır. Yazı boyutunu değiştirebilir, gece veya sepya görünümüne geçebilir ve yer imi bırakabilirsin.</p><p>V6 geliştikçe bu alana gerçek bölüm metinleri gelecek; amaç, kitabı uygulamadan çıkmadan rahatça okuyabilmek.</p>`;
+ const saved=await getOfflineBook(selected);
+ if(saved){
+   $("page").innerHTML=saved.html;
+   $("offlineStatus").textContent="● Bu kitap cihazında kayıtlı — internetsiz okuyabilirsin";
+   $("downloadBook").textContent="✓ Çevrimdışı Kayıtlı";
+ } else if(b[3]){
+   $("page").innerHTML=`<h1>${b[0]}</h1><p><em>${b[1]}</em></p><p>Gerçek metin Vikikaynak'taki Bölüm 1'den yükleniyor…</p>`;
+   $("downloadBook").textContent="⬇️ Bölümü Çevrimdışı Kaydet";
+   $("offlineStatus").textContent="● Kaynak metni yükleniyor";
+   try{
+     const url=b[3].replace('/wiki/','/w/index.php?title=')+'&action=raw&origin=*';
+     const r=await fetch(url,{cache:'no-store'});
+     if(!r.ok) throw new Error('fetch');
+     const raw=await r.text();
+     const safe=raw.replace(/\r/g,'').split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean).map(x=>`<p>${x.replace(/\n+/g,'<br>')}</p>`).join('');
+     const html=`<h1>Aşk-ı Memnu</h1><p><em>Halid Ziya Uşaklıgil — Bölüm 1</em></p>${safe}`;
+     $("page").innerHTML=html;
+     $("offlineStatus").textContent="● Gerçek metin yüklendi — çevrimdışı kaydedebilirsin";
+   }catch(e){
+     $("page").innerHTML=`<h1>Aşk-ı Memnu</h1><p><em>Halid Ziya Uşaklıgil</em></p><p>Vikikaynak kaynağındaki gerçek metin internet bağlantısı üzerinden yüklenemedi.</p><p>Bağlantıyı açıp metni görüntüleyebilirsin:</p><p><a href="${b[3]}" target="_blank" rel="noopener">📖 Vikikaynak — Aşk-ı Memnu, Bölüm 1</a></p>`;
+     $("offlineStatus").textContent="● Kaynak bağlantısı hazır";
+   }
+ } else {
+   $("page").innerHTML=`<h1>${b[0]}</h1><p><em>${b[1]}</em></p><p>Bu kitabın yasal tam metni sonraki kitap paketinde eklenecek.</p>`;
+   $("offlineStatus").textContent="● Uygulama çevrimdışı çalışabilir";
+   $("downloadBook").textContent="⬇️ Çevrimdışı Kaydet";
+ }
  $("readerProgress").style.width=p+"%";$("readerPercent").textContent="%"+p;$("pageLabel").textContent="İlerleme";
 }
+
+
+$("downloadBook").onclick=async()=>{
+ if(selected==null)return;
+ const old=await getOfflineBook(selected);
+ if(old){alert("Bu kitap zaten cihazına kaydedilmiş. İnternet olmadan da okuyabilirsin. 📖");return;}
+ const html=$("page").innerHTML;
+ if(books[selected][3] && html.includes("Vikikaynak")) { alert("Önce gerçek metnin yüklenmesini bekleyelim. 📖"); return; }
+ if(!html || html.length<150){alert("Kitap metni henüz hazır değil.");return;}
+ await saveOfflineBook(selected,html);
+ $("downloadBook").textContent="✓ Çevrimdışı Kayıtlı";
+ $("offlineStatus").textContent="● Bu kitap cihazında kayıtlı — internetsiz okuyabilirsin";
+ alert("Kitap bu cihazda çevrimdışı okumaya hazır. 📚");
+};
+
 $("close").onclick=()=>$("modal").classList.remove("open");
 $("plus").onclick=()=>{font=Math.min(30,font+2);localStorage.setItem("readerFont",font);renderReader()};
 $("minus").onclick=()=>{font=Math.max(14,font-2);localStorage.setItem("readerFont",font);renderReader()};
+let light=Number(localStorage.getItem("readerLight")||0);
+function applyLight(){ $("screenShade").style.opacity=(light/100).toFixed(2); $("lightRange").value=light; }
+$("lightBtn").onclick=()=>{$("lightPanel").classList.toggle("open");applyLight()};
+$("lightRange").oninput=e=>{light=Number(e.target.value);localStorage.setItem("readerLight",light);applyLight()};
+applyLight();
 $("theme").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("dark",document.body.classList.contains("dark"))};
 $("darkreader").onclick=()=>{$("page").style.background=document.body.classList.contains("dark")?"#17221c":"#fffdf8";$("page").style.color=document.body.classList.contains("dark")?"#ddd8cf":"#332f29"};
 $("sepia").onclick=()=>{$("page").style.background="#f1e4c9";$("page").style.color="#403529"};
